@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+<div class="col-sm-8 offset-2">
+    <h3 class="text-center alert alert-primary">Employee Details</h3>
+    {% if e %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Company</th>
+                <th scope="col"> Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for val in e %}
+            <tr>
+                <td scope="row">{{val.id}}</td>
+                <td>{{val.name}}</td>
+                <td>{{val.salary}}</td>
+                <td>{{val.designation}}</td>
+                <td>{{val.company}}</td>
+                <td><a href="{% url 'updatedata' val.id %}" class="btn btn-warning">Edit <span
+                            class="glyphicon glyphicon-pencil"></span></a>
+                    <form action="{% url 'deletedata' val.id %}" method="POST" class="d-inline">
+
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-center alert alert-warning">No Data</h3>
+    {% endif %}
+    <a href="{% url 'add' %}" class="btn btn-info">Add New Data</a>
+    <a href="{% url 'login' %}" class="btn btn-primary">Logout</a>
+
+</div>
+</div>
+{% endblock content %}

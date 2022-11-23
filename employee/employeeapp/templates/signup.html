@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+</head>
+</head>
+
+<body>
+    <h2 class="text-center alert alert-info">Registration Form</h2>
+    {% if messages %}
+    {% for message in messages %}
+    <span class="btn btn-primary col-sm-5 offset-3">{{message}}</span>
+    {% endfor %}
+    {% endif %} 
+    <form action="" method="post" class="col-sm-5 offset-3 mt-5">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-success offset-4" value="Register">
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </form>
+
+    <script src="{% static 'enroll/js/bootstrap.js' %}"></script>
+    <script src="{% static 'enroll/js/jquery.js' %}"></script>
+    <script src="{% static 'enroll/js/popper.js' %}"></script>
+</body>
+
+</html>
